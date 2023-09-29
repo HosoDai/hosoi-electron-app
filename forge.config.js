@@ -2,13 +2,6 @@ module.exports = {
   packagerConfig: {
     asar: true,
     osxSign: {},
-    // ...
-    osxNotarize: {
-      tool: 'notarytool',
-      appleId: process.env.APPLE_ID,
-      appleIdPassword: process.env.APPLE_PASSWORD,
-      teamId: process.env.APPLE_TEAM_ID
-    }
   },
   rebuildConfig: {},
   makers: [
@@ -34,5 +27,18 @@ module.exports = {
       name: '@electron-forge/plugin-auto-unpack-natives',
       config: {},
     },
+  ],
+  publishers: [
+    {
+      name: '@electron-forge/publisher-github',
+      config: {
+        repository: {
+          owner: 'HosoDai',
+          name: 'hosoi-electron-app'
+        },
+        prerelease: false,
+        draft: true
+      }
+    }
   ],
 };
